@@ -1,0 +1,39 @@
+<div class="dashboard-header">
+    <h2>Welcome, {{ userData.username }}</h2>
+    <button (click)="logout()">Log Out</button>
+  </div>
+<div class="profile-container">
+    <h2>Student Profile</h2>
+    <p><strong>Username:</strong> {{ userData.username }}</p>
+    <p><strong>Email:</strong> {{ userData.email }}</p>
+    <p><strong>School:</strong> {{ userData.school }}</p>
+    <p><strong>Year of Study:</strong> {{ userData.yearOfStudy }}</p>
+  </div>
+
+  <h3>Edit Profile</h3>
+<form #f="ngForm" (ngSubmit)="updateProfile(userData)">
+  <label>Username:</label>
+  <input type="text" name="username" [(ngModel)]="userData.username" />
+
+  <label>Email:</label>
+  <input type="email" name="email" [(ngModel)]="userData.email" />
+
+  <label>School:</label>
+  <select [(ngModel)]="userData.school" name="school" required>
+    <option value=""> Your School </option>
+    <option value="bs">Business School</option>
+    <option value="site">School of IT & Engineering</option>
+    <option value="seogi">School of Energy & Oil and Gas</option>
+    <option value="sg">School of Geology</option>
+    <option value="ise">International School of Economics</option>
+    <option value="kma">Kazakhstan Maritime Academy</option>
+    <option value="sam">School of Applied Mathematics</option>
+    <option value="sce">School of Chemical Engineering</option>
+  </select>
+
+  <label>Year of Study:</label>
+  <input type="number" name="yearOfStudy" [(ngModel)]="userData.yearOfStudy" />
+
+  <button type="submit">Save Changes</button>
+</form>
+<button (click)="deleteAccount()" class="delete-btn">Delete Account</button>

@@ -1,0 +1,65 @@
+form {
+    max-width: 450px;
+    margin: 60px auto;
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    font-family: 'Segoe UI', sans-serif;
+  }
+  
+select{
+    -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-image: url('data:image/svg+xml;utf8,<svg fill="gray" height="20" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 16px 16px;
+    width: 106%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    border: 1px solid #90caf9;
+    background-color: #f0faff;
+    font-size: 16px;
+}
+  h1 {
+    text-align: center;
+    color: #1565c0;
+    margin-bottom: 25px;
+  }
+  
+  input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    border: 1px solid #90caf9;
+    background-color: #f0faff;
+    font-size: 16px;
+  }
+  
+  button[type="submit"] {
+    width: 100%;
+    background-color: #1565c0;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #0d47a1;
+  }
+  
+  p {
+    text-align: center;
+    font-size: 14px;
+    margin-top: 10px;
+  }
+  
