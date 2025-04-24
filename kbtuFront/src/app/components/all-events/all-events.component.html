@@ -1,0 +1,70 @@
+<div class="all-events-page">
+    <header class="page-header">
+      <h1>All Events</h1>
+      <p>Discover and explore all events happening at KBTU</p>
+    </header>
+  
+    <div class="content-wrapper">
+      <aside class="filter-sidebar">
+        <h3><i class="fas fa-filter"></i> Filters</h3> 
+  
+        <div class="filter-group">
+          <h4>Event Type</h4>
+          <div class="filter-options">
+            <div *ngFor="let type of eventTypeOptions" class="filter-option checkbox">
+              <input type="checkbox"
+                     [id]="'type-' + type.key"
+                     [name]="'type-' + type.key"
+                     [(ngModel)]="selectedEventTypes[type.key]"
+                     (ngModelChange)="onFilterChange()">
+              <label [for]="'type-' + type.key">{{ type.display }}</label>
+            </div>
+          </div>
+        </div>
+  
+    <div class="filter-group"><!-- here it is a school filter in all events page  -->
+        <h4>School</h4>
+        <div class="filter-options">
+          <div *ngFor="let school of schoolOptions" class="filter-option radio">
+            <input type="radio"
+                   [id]="'school-' + school.key"
+                   name="schoolFilter"
+                   [value]="school.key"
+                   [(ngModel)]="selectedSchool"
+                   (ngModelChange)="onFilterChange()"> 
+            <label [for]="'school-' + school.key">{{ school.display }}</label>
+          </div>
+        </div>
+      </div>
+  
+        <div class="filter-actions">
+          <button class="reset-btn" (click)="resetFilters()">Reset Filters</button>
+        </div>
+      </aside>
+  
+      <main class="main-content">
+        <div class="search-container"> 
+          <!-- our search bar is here  -->
+          <input type="text"
+                 placeholder="Search events..."
+                 [(ngModel)]="searchTerm"
+                 (ngModelChange)="onFilterChange()">
+          <i class="fas fa-search search-icon"></i> 
+        </div>
+  
+        <div *ngIf="isLoading" class="status-message loading">Loading events...</div>
+        <div *ngIf="error && !isLoading" class="status-message error">{{ error }}</div>
+  
+        <div *ngIf="!isLoading && !error">
+          <div *ngIf="filteredEvents.length > 0; else noResults" class="events-grid">
+            <app-event-card *ngFor="let event of filteredEvents" [event]="event"></app-event-card>
+          </div>
+          <ng-template #noResults>
+            <div class="status-message no-results">
+              No events match your current filters. Try adjusting your search or filters.
+            </div>
+          </ng-template>
+        </div>
+      </main>
+    </div>
+  </div>

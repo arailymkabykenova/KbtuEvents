@@ -1,0 +1,21 @@
+<a [routerLink]="['/event', event.id]" class="event-card-link" *ngIf="event">
+  <div class="event-card">
+    <img *ngIf="event.image" [src]="event.image" [alt]="event.name" class="event-image" />
+    <div *ngIf="!event.image" class="event-image-placeholder">No Image</div> 
+    <div class="event-details">
+      <h3>{{ event.name }}</h3>
+      <p class="event-info">
+        <span class="icon">📅</span>
+        {{ event.event_date | date:'MMM d, y' }}
+        <span *ngIf="event.event_time"> at {{ event.event_date + 'T' + event.event_time | date:'shortTime' }}</span>
+      </p>
+      <p class="event-info" *ngIf="event.location">
+        <span class="icon">📍</span> {{ event.location }}
+      </p>
+      <p class="event-info">
+        <span class="icon">🏫</span> {{ event.school }}
+      </p>
+      <p class="event-topic" *ngIf="event.topic">{{ event.topic }}</p>
+    </div>
+  </div>
+</a>

@@ -27,7 +27,9 @@
               }
             ],
             "styles": [
-              "src/styles.css"
+              "node_modules/swiper/swiper-bundle.min.css",
+              "src/styles.css", 
+              "node_modules/@coreui/coreui/dist/css/coreui.min.css" 
             ],
             "scripts": []
           },
@@ -85,12 +87,16 @@
               }
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "node_modules/@coreui/coreui/dist/css/coreui.min.css"
             ],
             "scripts": []
           }
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "38fa8d7c-adae-472f-a551-a0620965a86c"
   }
 }

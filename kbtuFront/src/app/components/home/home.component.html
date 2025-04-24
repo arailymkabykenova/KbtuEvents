@@ -1,0 +1,75 @@
+<div class="home-container">
+  <section class="hero-section">
+    <div class="hero-content">
+      <h1>TIME TO FIND YOUR INTERSTS</h1>
+      <p>Discover upcoming events and stay connected!</p>
+    </div>
+  </section>
+
+
+  <section class="event-timeline-section">
+    <h2>Event Timeline</h2>
+    <div *ngIf="isLoadingCarousel" class="loading-indicator">Loading timeline...</div>
+    <div *ngIf="errorCarousel && !isLoadingCarousel" class="error-message">{{ errorCarousel }}</div>
+    <div *ngIf="!isLoadingCarousel && !errorCarousel && upcomingEvents.length > 0" class="swiper-container-wrapper">
+      <div class="swiper swiper-container">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide" *ngFor="let event of upcomingEvents">
+            <app-event-card [event]="event"></app-event-card>
+          </div>
+        </div>
+        <div class="swiper-pagination"></div>
+      </div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+    </div>
+    <div *ngIf="!isLoadingCarousel && !errorCarousel && upcomingEvents.length === 0" class="no-events">
+      No upcoming events to display in the timeline.
+    </div>
+  </section>
+
+  <section class="calendar-section">
+    <div class="calendar-container"> 
+
+      <div class="calendar-left">
+        <div class="header-container">
+          <h2>Select Date</h2>
+        </div>
+        <ngb-datepicker #dp [(ngModel)]="selectedDateModel" (dateSelect)="onDateSelect($event)"></ngb-datepicker>
+      </div>
+
+      <div class="calendar-right">
+        <h2>Events on Selected Date</h2>
+
+        <div *ngIf="isLoadingCalendarEvents" class="loading-indicator">Loading events...</div>
+        <div *ngIf="errorCalendarEvents && !isLoadingCalendarEvents" class="error-message">{{ errorCalendarEvents }}</div>
+
+
+        <div *ngIf="!isLoadingCalendarEvents && !errorCalendarEvents">
+          <div *ngIf="filteredEvents.length > 0">
+            <div *ngFor="let event of filteredEvents" class="event-list-item">
+               <div class="event-list-details">
+                    <h3>{{ event.name }}</h3>
+                    <p><strong>Time:</strong> {{ event.event_date + 'T' + event.event_time | date:'shortTime' }}</p>
+                    <p><strong>Location:</strong> {{ event.location }}</p>
+                    <a [routerLink]="['/event', event.id]" class="details-link">View Details</a>
+               </div>
+            </div>
+          </div>
+
+          <div *ngIf="noEventsFoundForDate && filteredEvents.length === 0" class="no-events-message">
+            No events found for the selected date.
+          </div>
+
+
+          <div *ngIf="!selectedDateModel && !isLoadingCalendarEvents" class="no-events-message">
+            Please select a date from the calendar to view events.
+          </div>
+        </div>
+      </div>
+
+    </div> 
+  </section>
+  
+
+</div> 

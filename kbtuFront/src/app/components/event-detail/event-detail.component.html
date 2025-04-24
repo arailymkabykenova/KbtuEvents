@@ -1,0 +1,100 @@
+<div class="event-details-container">
+  <button class="back-button" (click)="goBack()">← Back to Home</button>
+
+  <div *ngIf="isLoading" class="loading-indicator">Loading event details...</div>
+  <div *ngIf="error && !isLoading" class="error-message">{{ error }}</div>
+
+  <div *ngIf="eventDetails && !isLoading && !error" class="event-content-wrapper">
+
+    <div class="event-card-details">
+      <div class="event-right">
+        <h2 class="event-title">{{ eventDetails.name }}</h2>
+        <div class="event-section">
+          <h3>Description</h3>
+          <p>{{ eventDetails.topic }}</p>
+        </div>
+        <div class="event-info-group">
+          <div class="info-block"><h4>Location</h4><p>{{ eventDetails.location }}</p></div>
+          <div class="info-block"><h4>Date</h4><p>{{ eventDetails.event_date | date:'longDate' }}</p></div>
+          <div class="info-block"><h4>Time</h4><p>{{ eventDetails.event_date + 'T' + eventDetails.event_time | date:'shortTime' }}</p></div>
+          <div class="info-block"><h4>Type</h4><p>{{ getEventTypeName(eventDetails.event_type) }}</p></div>
+          <div class="info-block"><h4>School</h4><p>{{ getSchoolName(eventDetails.school) }}</p></div>
+          <div class="info-block"><h4>Speakers</h4><p>{{ eventDetails.speakers }}</p></div>
+        </div>
+      </div>
+    </div> 
+
+    <div class="event-actions">
+      <div class="action-section registration-section">
+        <h3>Register for this Event</h3>
+        <p *ngIf="!isUserLoggedIn()">
+          Please <a routerLink="/login">login</a> to register for this event.
+        </p>
+        <ng-container *ngIf="isUserLoggedIn()">
+          <div *ngIf="!hasEventPassed()">
+            <button class="action-button register-button"
+                    (click)="registerForEvent()"
+                    [disabled]="isRegistering || isAlreadyRegistered">
+              <span *ngIf="!isRegistering && !isAlreadyRegistered">Register Now</span>
+              <span *ngIf="isRegistering">Registering...</span>
+              <span *ngIf="isAlreadyRegistered">Registered ✓</span>
+            </button>
+            <p *ngIf="registrationMessage"
+               [class.message-success]="!registrationIsError"
+               [class.message-error]="registrationIsError">
+               {{ registrationMessage }}
+            </p>
+          </div>
+          <p *ngIf="hasEventPassed()" class="message-info"> 
+            Registration is closed as this event has already passed.
+          </p>
+        </ng-container>
+      </div> 
+
+      <div class="action-section feedback-section">
+        <h3>Event Feedback</h3>
+        <p *ngIf="!hasEventPassed()">
+          You can leave feedback after the event date ({{ eventDetails.event_date | date:'mediumDate' }}).
+        </p>
+        <button class="action-button feedback-toggle-button"
+                *ngIf="hasEventPassed() && !showFeedbackForm && !hasAlreadyLeftFeedback"
+                (click)="toggleFeedbackForm()">
+          Leave Feedback
+        </button>
+
+        <p *ngIf="hasAlreadyLeftFeedback" class="message-success">Thank you for your feedback!</p>
+
+        <form *ngIf="showFeedbackForm && !hasAlreadyLeftFeedback" (ngSubmit)="submitFeedback()" class="feedback-form">
+          <div class="form-group">
+            <label for="rating">Rating (1-5):</label>
+            <input type="number" id="rating" name="rating" min="1" max="5" required
+                   [(ngModel)]="feedbackRating" [disabled]="isSubmittingFeedback">
+          </div>
+          <div class="form-group">
+            <label for="comment">Comment:</label>
+            <textarea id="comment" name="comment" rows="4" required
+                      [(ngModel)]="feedbackComment" [disabled]="isSubmittingFeedback"></textarea>
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="action-button submit-feedback-button" [disabled]="isSubmittingFeedback">
+              <span *ngIf="!isSubmittingFeedback">Submit Feedback</span>
+              <span *ngIf="isSubmittingFeedback">Submitting...</span>
+            </button>
+            <button type="button" class="action-button cancel-feedback-button" (click)="toggleFeedbackForm()" [disabled]="isSubmittingFeedback">
+              Cancel
+            </button>
+          </div>
+          <p *ngIf="feedbackMessage"
+             [class.message-success]="!feedbackIsError"
+             [class.message-error]="feedbackIsError">
+             {{ feedbackMessage }}
+          </p>
+        </form>
+
+        <p *ngIf="!isUserLoggedIn()">
+          Please <a routerLink="/login">login</a> to leave feedback for this event.
+        </p>
+      </div>
+    </div>
+  </div> 
+</div>

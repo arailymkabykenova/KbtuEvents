@@ -1,0 +1,148 @@
+.dashboard-header {
+  background: linear-gradient(90deg, #d0e7ff, #b0d4f1); /* нежный градиент */
+  padding: 20px 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.dashboard-header h2 {
+  margin: 0;
+  font-size: 1.8em;
+  color: #2a4f77;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+}
+  
+.dashboard-header {
+  background: linear-gradient(90deg, #e3f2fd, #bbdefb); 
+  padding: 24px 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  margin-bottom: 32px;
+  text-align: center;
+  font-family: 'Inter', sans-serif;
+}
+
+.dashboard-header h2 {
+  margin: 0;
+  font-size: 1.8em;
+  font-weight: 600;
+  color: #0d47a1;
+}
+
+
+.dashboard-header button {
+  margin-top: 18px;
+  background-color: #ffffff;
+  color: #1565c0;
+  border: 2px solid #1565c0;
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.dashboard-header button:hover {
+  background-color: #e3f2fd;
+  color: #0d47a1;
+}
+
+.profile-container {
+  max-width: 640px;
+  margin: 40px auto;
+  background-color: #ffffff;
+  padding: 32px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.profile-container h2 {
+  text-align: center;
+  color: #1565c0;
+  margin-bottom: 24px;
+}
+
+.profile-container p {
+  font-size: 16px;
+  color: #333;
+  margin: 10px 0;
+}
+
+
+form {
+  margin-top: 30px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+form label {
+  display: block;
+  margin-bottom: 6px;
+  color: #1565c0;
+  font-weight: 500;
+}
+
+form input,
+select {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  border: 1px solid #90caf9;
+  background-color: #f4faff;
+  font-size: 16px;
+}
+
+
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-image: url('data:image/svg+xml;utf8,<svg fill="gray" height="20" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 16px 16px;
+}
+
+/* Submit кнопка */
+form button[type="submit"] {
+  display: block;
+  margin: 0 auto;
+  width: 40%;
+  background-color: #1565c0;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+form button[type="submit"]:hover {
+  background-color: #0d47a1;
+}
+
+
+.delete-btn {
+  display: block;
+  margin: 20px auto 0 auto;
+  width: 30%;
+  background-color: #e53935;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.delete-btn:hover {
+  background-color: #b71c1c;
+}
